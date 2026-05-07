@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="40" fill="#1a1410"/>
+  <rect x="52" y="52" width="408" height="408" rx="28" fill="#faf7f2"/>
+  <text x="256" y="315" font-family="serif" font-size="240" font-weight="bold" 
+        text-anchor="middle" fill="#c8392b">國</text>
+  <rect x="52" y="400" width="408" height="60" rx="0" fill="#c8392b"/>
+  <rect x="52" y="400" width="408" height="60" rx="0" fill="#c8392b"/>
+  <rect x="52" y="448" width="408" height="12" rx="0" fill="#1a1410"/>
+</svg>
