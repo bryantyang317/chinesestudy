@@ -570,6 +570,143 @@ canvas { display: block; cursor: crosshair; touch-action: none; width: 100%; }
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+
+/* ══ Quiz Setup Wizard ══ */
+.setup-step {
+  display: none;
+}
+.setup-step.on { display: block; }
+
+.step-hd {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.step-badge {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--ink); color: var(--paper);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; flex-shrink: 0;
+  font-family: 'Noto Serif TC', serif;
+}
+.step-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 22px; font-weight: 700; color: var(--ink);
+}
+.step-sub { font-size: 18px; color: var(--ink3); margin-top: 2px; }
+
+/* Grade/Sem selector in quiz */
+.quiz-sem-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.qs-btn {
+  flex: 1; padding: 12px; border-radius: 10px;
+  border: 1.5px solid var(--border); background: var(--paper);
+  cursor: pointer; font-size: 20px; font-weight: 500; text-align: center;
+  color: var(--ink2); transition: all .15s;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.qs-btn.on { background: var(--red-light); border-color: var(--red); color: var(--red); font-weight: 700; }
+
+/* Lesson range selector */
+.range-wrap {
+  background: var(--paper2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 16px; margin-bottom: 14px;
+}
+.range-label { font-size: 18px; color: var(--ink3); margin-bottom: 10px; }
+.range-row { display: flex; align-items: center; gap: 10px; }
+.range-select {
+  flex: 1; padding: 10px 12px;
+  border: 1.5px solid var(--border); border-radius: 10px;
+  background: var(--paper); font-size: 24px; color: var(--ink);
+  font-family: 'Noto Sans TC', sans-serif; outline: none;
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a7a6e' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+.range-select:focus { border-color: var(--red); }
+.range-dash { font-size: 24px; color: var(--ink3); font-weight: 700; flex-shrink: 0; }
+
+/* Lesson preview chips */
+.lesson-preview {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+}
+.les-chip {
+  padding: 4px 12px; border-radius: 14px; font-size: 16px;
+  background: var(--paper); border: 1px solid var(--border);
+  color: var(--ink3);
+}
+.les-chip.in-range {
+  background: var(--red-light); border-color: var(--red); color: var(--red); font-weight: 600;
+}
+
+/* Question count selector */
+.qcount-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 14px; }
+.qcount-btn {
+  padding: 16px 8px; border-radius: var(--r);
+  border: 1.5px solid var(--border); background: var(--paper);
+  cursor: pointer; font-family: 'Noto Serif TC', serif;
+  transition: all .15s; text-align: center;
+}
+.qcount-btn:hover { border-color: var(--red); }
+.qcount-btn.on { background: var(--red-light); border-color: var(--red); }
+.qcount-num { font-size: 32px; font-weight: 700; color: var(--ink); }
+.qcount-lbl { font-size: 16px; color: var(--ink3); margin-top: 2px; }
+.qcount-btn.on .qcount-num { color: var(--red); }
+
+/* Quiz type cards */
+.qtype-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.qtype-btn {
+  padding: 14px 10px; border-radius: var(--r);
+  border: 1.5px solid var(--border); background: var(--paper);
+  cursor: pointer; transition: all .15s; text-align: center;
+}
+.qtype-btn:hover { border-color: var(--ink); }
+.qtype-btn.on { background: var(--red-light); border-color: var(--red); }
+.qtype-icon { font-size: 28px; margin-bottom: 4px; }
+.qtype-name { font-size: 20px; font-weight: 700; color: var(--ink); }
+.qtype-sub { font-size: 16px; color: var(--ink3); margin-top: 2px; }
+.qtype-btn.on .qtype-name { color: var(--red); }
+
+/* Setup summary bar */
+.setup-summary {
+  background: var(--paper2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 12px 14px; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.summary-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--paper); border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 12px; font-size: 18px; color: var(--ink2);
+}
+.summary-chip strong { color: var(--ink); font-weight: 700; }
+
+/* Step nav buttons */
+.step-nav { display: flex; gap: 8px; margin-top: 4px; }
+.step-next {
+  flex: 1; padding: 14px; border-radius: 10px;
+  background: var(--ink); color: var(--paper); border: none;
+  cursor: pointer; font-size: 22px; font-weight: 700;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.step-back-btn {
+  padding: 14px 18px; border-radius: 10px;
+  background: transparent; color: var(--ink3);
+  border: 1.5px solid var(--border); cursor: pointer;
+  font-size: 20px; font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* Result score display */
+.result-pts-row {
+  display: flex; gap: 8px; justify-content: center;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.result-stat {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--paper2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 16px; min-width: 80px;
+}
+.result-stat-num { font-size: 28px; font-weight: 700; font-family: 'Noto Serif TC',serif; color: var(--ink); }
+.result-stat-lbl { font-size: 14px; color: var(--ink3); margin-top: 2px; }
+
 </style>
 </head>
 <body>
@@ -692,16 +829,93 @@ canvas { display: block; cursor: crosshair; touch-action: none; width: 100%; }
 
 <!-- ── 闖關 ── -->
 <div id="qu" class="sec">
-  <div id="lvSel">
-    <div style="font-size:24px;color:var(--ink3);margin-bottom:10px;">選擇題型</div>
-    <div class="lv-grid">
-      <div class="lv" onclick="startQ(1)"><div class="lv-icon">🔤</div><div class="lv-name">注音配對</div><div class="lv-sub">字 → 注音</div></div>
-      <div class="lv" onclick="startQ(2)"><div class="lv-icon">📖</div><div class="lv-name">字義選擇</div><div class="lv-sub">了解字意</div></div>
-      <div class="lv" onclick="startQ(3)"><div class="lv-icon">🌿</div><div class="lv-name">部首辨識</div><div class="lv-sub">找部首</div></div>
-      <div class="lv" onclick="startQ(4)"><div class="lv-icon">📝</div><div class="lv-name">詞語填空</div><div class="lv-sub">詞語配對</div></div>
-      <div class="lv" onclick="startQ(5)"><div class="lv-icon">🎯</div><div class="lv-name">綜合挑戰</div><div class="lv-sub">混合題型</div></div>
+  <!-- ── Quiz Setup: Step 1 範圍 ── -->
+  <div id="setupStep1" class="setup-step on">
+    <div class="step-hd">
+      <div class="step-badge">1</div>
+      <div><div class="step-title">選擇測驗範圍</div><div class="step-sub">跨課複習，輕鬆自訂</div></div>
+    </div>
+
+    <div class="quiz-sem-row" id="quizGradeRow">
+      <button class="qs-btn on" onclick="setQuizGrade(this,1)">一年級</button>
+      <button class="qs-btn" onclick="setQuizGrade(this,2)">二年級</button>
+    </div>
+    <div class="quiz-sem-row" id="quizSemRow">
+      <button class="qs-btn" onclick="setQuizSem(this,1)">上學期</button>
+      <button class="qs-btn on" onclick="setQuizSem(this,2)">下學期</button>
+    </div>
+
+    <div class="range-wrap">
+      <div class="range-label">課次範圍</div>
+      <div class="range-row">
+        <select class="range-select" id="rangeFrom" onchange="updateRangePreview()"></select>
+        <span class="range-dash">～</span>
+        <select class="range-select" id="rangeTo" onchange="updateRangePreview()"></select>
+      </div>
+      <div class="lesson-preview" id="lessonPreview"></div>
+    </div>
+
+    <div class="step-nav">
+      <button class="step-next" onclick="goStep(2)">下一步 →</button>
     </div>
   </div>
+
+  <!-- ── Quiz Setup: Step 2 題數 ── -->
+  <div id="setupStep2" class="setup-step">
+    <div id="setupSummary2" class="setup-summary"></div>
+    <div class="step-hd">
+      <div class="step-badge">2</div>
+      <div><div class="step-title">選擇題數</div><div class="step-sub">依照可用字數自動調整</div></div>
+    </div>
+    <div class="qcount-grid" id="qcountGrid">
+      <div class="qcount-btn on" onclick="setQCount(this,5)">
+        <div class="qcount-num">5</div><div class="qcount-lbl">題（快速）</div>
+      </div>
+      <div class="qcount-btn" onclick="setQCount(this,10)">
+        <div class="qcount-num">10</div><div class="qcount-lbl">題（一般）</div>
+      </div>
+      <div class="qcount-btn" onclick="setQCount(this,20)">
+        <div class="qcount-num">20</div><div class="qcount-lbl">題（挑戰）</div>
+      </div>
+    </div>
+    <div id="charPoolInfo" style="font-size:18px;color:var(--ink3);margin-bottom:14px;text-align:center;"></div>
+    <div class="step-nav">
+      <button class="step-back-btn" onclick="goStep(1)">←</button>
+      <button class="step-next" onclick="goStep(3)">下一步 →</button>
+    </div>
+  </div>
+
+  <!-- ── Quiz Setup: Step 3 題型 ── -->
+  <div id="setupStep3" class="setup-step">
+    <div id="setupSummary3" class="setup-summary"></div>
+    <div class="step-hd">
+      <div class="step-badge">3</div>
+      <div><div class="step-title">選擇題型</div></div>
+    </div>
+    <div class="qtype-grid">
+      <div class="qtype-btn on" onclick="setQType(this,1)">
+        <div class="qtype-icon">🔤</div><div class="qtype-name">注音配對</div><div class="qtype-sub">字 → 注音</div>
+      </div>
+      <div class="qtype-btn" onclick="setQType(this,2)">
+        <div class="qtype-icon">📖</div><div class="qtype-name">字義選擇</div><div class="qtype-sub">了解字意</div>
+      </div>
+      <div class="qtype-btn" onclick="setQType(this,3)">
+        <div class="qtype-icon">🌿</div><div class="qtype-name">部首辨識</div><div class="qtype-sub">找部首</div>
+      </div>
+      <div class="qtype-btn" onclick="setQType(this,4)">
+        <div class="qtype-icon">📝</div><div class="qtype-name">詞語填空</div><div class="qtype-sub">詞語配對</div>
+      </div>
+      <div class="qtype-btn" style="grid-column:1/-1" onclick="setQType(this,5)">
+        <div class="qtype-icon">🎯</div><div class="qtype-name">綜合挑戰</div><div class="qtype-sub">混合全部題型</div>
+      </div>
+    </div>
+    <div class="step-nav">
+      <button class="step-back-btn" onclick="goStep(2)">←</button>
+      <button class="step-next" onclick="beginQuiz()" style="background:var(--red)">🎮 開始測驗！</button>
+    </div>
+  </div>
+
+  <!-- ── Quiz Playing Area ── -->
   <div id="qArea" style="display:none">
     <div class="qcard">
       <div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div>
@@ -712,7 +926,7 @@ canvas { display: block; cursor: crosshair; touch-action: none; width: 100%; }
       <div class="q-text" id="qText"></div>
       <div class="opts" id="qOpts"></div>
     </div>
-    <button class="back-btn" onclick="backLv()">← 返回題型選擇</button>
+    <button class="back-btn" onclick="backToSetup()">← 重新設定</button>
   </div>
 </div>
 
@@ -1844,78 +2058,255 @@ function updateRadPanel(r){
 // ═══════════════════════════════════════════
 // QUIZ SECTION
 // ═══════════════════════════════════════════
-function genQuiz(type){
-  const d=getLessonData(lessonNum);
-  if(!d) return [];
-  const chars=d.chars.slice();
-  const qs=[];
-  const pool=[...chars].sort(()=>Math.random()-.5).slice(0,5);
+// ═══════════════════════════════════════════
+// QUIZ SETUP STATE
+// ═══════════════════════════════════════════
+let quizSetupGrade = 1;
+let quizSetupSem = 2;
+let quizRangeFrom = 1;
+let quizRangeTo = 12;
+let quizCount = 5;
+let quizTypeSelected = 1;
 
-  pool.forEach(ch=>{
-    const m=getCMeta(ch);
-    const others=chars.filter(c=>c!==ch).sort(()=>Math.random()-.5).slice(0,3);
-    if(type===1){
+function getQuizLessonDB(){
+  if(quizSetupGrade===1 && quizSetupSem===1) return LESSONS_1_1;
+  if(quizSetupGrade===1 && quizSetupSem===2) return LESSONS_1_2;
+  return null;
+}
+function getQuizLessonMax(){
+  const db = getQuizLessonDB();
+  if(!db) return 0;
+  return Math.max(...Object.keys(db).map(Number));
+}
+
+// ── Step navigation ──
+function goStep(n){
+  document.querySelectorAll('.setup-step').forEach(s=>s.classList.remove('on'));
+  document.getElementById('setupStep'+n).classList.add('on');
+  if(n===2) renderStep2Summary();
+  if(n===3) renderStep3Summary();
+}
+
+function backToSetup(){
+  document.getElementById('qArea').style.display='none';
+  document.querySelectorAll('.setup-step').forEach(s=>s.classList.remove('on'));
+  document.getElementById('setupStep1').classList.add('on');
+}
+
+// ── Step 1: Range ──
+function setQuizGrade(btn, g){
+  document.querySelectorAll('#quizGradeRow .qs-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  quizSetupGrade = g;
+  updateRangeSelects();
+}
+function setQuizSem(btn, s){
+  document.querySelectorAll('#quizSemRow .qs-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  quizSetupSem = s;
+  updateRangeSelects();
+}
+function updateRangeSelects(){
+  const db = getQuizLessonDB();
+  const from = document.getElementById('rangeFrom');
+  const to = document.getElementById('rangeTo');
+  if(!db){
+    from.innerHTML = '<option>（無資料）</option>';
+    to.innerHTML = '<option>（無資料）</option>';
+    document.getElementById('lessonPreview').innerHTML = '<span style="font-size:18px;color:var(--ink3)">此冊資料尚未建立</span>';
+    return;
+  }
+  const keys = Object.keys(db).map(Number).sort((a,b)=>a-b);
+  const opts = keys.map(k=>`<option value="${k}">第 ${k} 課：${db[k].title}</option>`).join('');
+  from.innerHTML = opts;
+  to.innerHTML = opts;
+  // default: full range
+  quizRangeFrom = keys[0];
+  quizRangeTo = keys[keys.length-1];
+  from.value = quizRangeFrom;
+  to.value = quizRangeTo;
+  updateRangePreview();
+}
+function updateRangePreview(){
+  const db = getQuizLessonDB();
+  if(!db) return;
+  quizRangeFrom = parseInt(document.getElementById('rangeFrom').value);
+  quizRangeTo = parseInt(document.getElementById('rangeTo').value);
+  // Ensure from <= to
+  if(quizRangeFrom > quizRangeTo){
+    document.getElementById('rangeTo').value = quizRangeFrom;
+    quizRangeTo = quizRangeFrom;
+  }
+  const keys = Object.keys(db).map(Number).sort((a,b)=>a-b);
+  const preview = document.getElementById('lessonPreview');
+  preview.innerHTML = keys.map(k=>`
+    <span class="les-chip ${k>=quizRangeFrom&&k<=quizRangeTo?'in-range':''}">
+      第${k}課
+    </span>`).join('');
+  // Count chars
+  const totalChars = getQuizCharPool().length;
+  preview.innerHTML += `<span style="font-size:16px;color:var(--ink3);width:100%;display:block;margin-top:6px">共 <strong style="color:var(--ink)">${totalChars}</strong> 個生字可測驗</span>`;
+}
+
+function getQuizCharPool(){
+  const db = getQuizLessonDB();
+  if(!db) return [];
+  const pool = [];
+  const seen = new Set();
+  for(let k=quizRangeFrom; k<=quizRangeTo; k++){
+    if(db[k]){
+      db[k].chars.forEach(ch=>{
+        if(!seen.has(ch)){ seen.add(ch); pool.push({ch, lesNum:k}); }
+      });
+    }
+  }
+  return pool;
+}
+
+function getQuizWordPool(){
+  const db = getQuizLessonDB();
+  if(!db) return [];
+  const pool = [];
+  const seen = new Set();
+  for(let k=quizRangeFrom; k<=quizRangeTo; k++){
+    if(db[k]){
+      db[k].words.forEach(w=>{
+        if(!seen.has(w)){ seen.add(w); pool.push(w); }
+      });
+    }
+  }
+  return pool;
+}
+
+// ── Step 2: Count ──
+function setQCount(btn, n){
+  document.querySelectorAll('.qcount-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  quizCount = n;
+}
+function renderStep2Summary(){
+  const db = getQuizLessonDB();
+  if(!db) return;
+  const pool = getQuizCharPool();
+  const semName = quizSetupSem===1?'上學期':'下學期';
+  const gradeName = ['一','二','三','四','五','六'][quizSetupGrade-1]+'年級';
+  document.getElementById('setupSummary2').innerHTML = `
+    <span class="summary-chip">📚 <strong>${gradeName}${semName}</strong></span>
+    <span class="summary-chip">📖 第${quizRangeFrom}～${quizRangeTo}課</span>
+    <span class="summary-chip">✏️ <strong>${pool.length}</strong> 個生字</span>`;
+  // Update available counts
+  const info = document.getElementById('charPoolInfo');
+  const avail5 = pool.length >= 4;
+  const avail10 = pool.length >= 8;
+  const avail20 = pool.length >= 15;
+  // Re-render count buttons with availability
+  const countData = [{n:5,lbl:'快速',ok:avail5},{n:10,lbl:'一般',ok:avail10},{n:20,lbl:'挑戰',ok:avail20}];
+  document.getElementById('qcountGrid').innerHTML = countData.map(({n,lbl,ok})=>`
+    <div class="qcount-btn ${quizCount===n?'on':''} ${!ok?'unaffordable':''}"
+         onclick="${ok?`setQCount(this,${n})`:''}" style="${ok?'':'opacity:.4;cursor:not-allowed'}">
+      <div class="qcount-num">${n}</div>
+      <div class="qcount-lbl">題（${lbl}）${ok?'':' ✕'}</div>
+    </div>`).join('');
+  // Auto-select largest available if current is too big
+  if(!avail10 && quizCount>5){ quizCount=5; }
+  if(!avail5){ info.textContent='生字數量不足，請擴大範圍'; }
+  else { info.textContent = `選取範圍共 ${pool.length} 個生字`; }
+}
+
+// ── Step 3: Type ──
+function setQType(btn, t){
+  document.querySelectorAll('.qtype-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  quizTypeSelected = t;
+}
+function renderStep3Summary(){
+  const semName = quizSetupSem===1?'上學期':'下學期';
+  const gradeName = ['一','二','三','四','五','六'][quizSetupGrade-1]+'年級';
+  const countMap = {5:'5題',10:'10題',20:'20題'};
+  document.getElementById('setupSummary3').innerHTML = `
+    <span class="summary-chip">📚 <strong>${gradeName}${semName}</strong></span>
+    <span class="summary-chip">📖 第${quizRangeFrom}～${quizRangeTo}課</span>
+    <span class="summary-chip">🔢 <strong>${quizCount}</strong> 題</span>`;
+}
+
+// ── Generate questions from multi-lesson pool ──
+function genQuiz(type){
+  const charPool = getQuizCharPool();
+  if(!charPool.length) return [];
+  const allChars = charPool.map(p=>p.ch);
+  const wordPool = getQuizWordPool();
+  const qs = [];
+  // Shuffle and pick up to quizCount
+  const shuffled = [...charPool].sort(()=>Math.random()-.5);
+  const picked = shuffled.slice(0, Math.min(quizCount, shuffled.length));
+
+  picked.forEach(({ch, lesNum}) => {
+    const m = getCMeta(ch);
+    // Get distractors from the FULL pool (not just same lesson)
+    const otherChars = allChars.filter(c=>c!==ch).sort(()=>Math.random()-.5).slice(0,3);
+    // Determine actual type for mixed mode
+    const actualType = type===5 ? [1,2,3,4][Math.floor(Math.random()*4)] : type;
+
+    if(actualType===1){
       // 注音配對
-      const opts=[m.zhu,...others.map(c=>getCMeta(c).zhu)].sort(()=>Math.random()-.5);
-      qs.push({q:`「${ch}」的注音是哪個？`,opts,ans:opts.indexOf(m.zhu)});
-    } else if(type===2){
+      const distractors = otherChars.map(c=>getCMeta(c).zhu);
+      const opts = [m.zhu,...distractors].sort(()=>Math.random()-.5);
+      qs.push({q:`「${ch}」的注音是哪個？`, opts, ans:opts.indexOf(m.zhu)});
+    } else if(actualType===2){
       // 字義選擇
-      const opts=[m.mean,...others.map(c=>getCMeta(c).mean)].sort(()=>Math.random()-.5);
-      qs.push({q:`「${ch}」（${m.zhu}）是什麼意思？`,opts,ans:opts.indexOf(m.mean)});
-    } else if(type===3){
+      const distractors = otherChars.map(c=>getCMeta(c).mean);
+      const opts = [m.mean,...distractors].sort(()=>Math.random()-.5);
+      qs.push({q:`「${ch}」（${m.zhu}）是什麼意思？`, opts, ans:opts.indexOf(m.mean)});
+    } else if(actualType===3){
       // 部首辨識
-      const opts=[m.rname,...others.map(c=>getCMeta(c).rname)].sort(()=>Math.random()-.5);
-      qs.push({q:`「${ch}」的部首是哪個？`,opts,ans:opts.indexOf(m.rname)});
-    } else if(type===4){
-      // 詞語填空
-      const ws=d.words.filter(w=>w.includes(ch));
-      if(ws.length){
-        const w=ws[0];
-        const blank=w.replace(ch,'＿');
-        const opts=[ch,...others.slice(0,3)].sort(()=>Math.random()-.5);
-        qs.push({q:`「${blank}」填入哪個字最適合？`,opts,ans:opts.indexOf(ch)});
-      } else {
-        const opts=[m.zhu,...others.map(c=>getCMeta(c).zhu)].sort(()=>Math.random()-.5);
-        qs.push({q:`「${ch}」的注音是哪個？`,opts,ans:opts.indexOf(m.zhu)});
-      }
+      const distractors = otherChars.map(c=>getCMeta(c).rname);
+      const opts = [m.rname,...distractors].sort(()=>Math.random()-.5);
+      qs.push({q:`「${ch}」的部首是哪個？`, opts, ans:opts.indexOf(m.rname)});
     } else {
-      // 綜合：隨機選
-      const t=[1,2,3][Math.floor(Math.random()*3)];
-      if(t===1){
-        const opts=[m.zhu,...others.map(c=>getCMeta(c).zhu)].sort(()=>Math.random()-.5);
-        qs.push({q:`「${ch}」的注音是哪個？`,opts,ans:opts.indexOf(m.zhu)});
-      } else if(t===2){
-        const opts=[m.mean,...others.map(c=>getCMeta(c).mean)].sort(()=>Math.random()-.5);
-        qs.push({q:`「${ch}」是什麼意思？`,opts,ans:opts.indexOf(m.mean)});
+      // 詞語填空 (type 4 or fallback)
+      const db = getQuizLessonDB();
+      const lesWords = db && db[lesNum] ? db[lesNum].words : [];
+      const matchedWords = lesWords.filter(w=>w.includes(ch));
+      if(matchedWords.length){
+        const w = matchedWords[Math.floor(Math.random()*matchedWords.length)];
+        const blank = w.replace(ch,'＿');
+        const opts = [ch,...otherChars.slice(0,3)].sort(()=>Math.random()-.5);
+        qs.push({q:`「${blank}」填入哪個字最適合？`, opts, ans:opts.indexOf(ch)});
       } else {
-        const opts=[m.rname,...others.map(c=>getCMeta(c).rname)].sort(()=>Math.random()-.5);
-        qs.push({q:`「${ch}」的部首是？`,opts,ans:opts.indexOf(m.rname)});
+        // fallback to zhuyin
+        const distractors = otherChars.map(c=>getCMeta(c).zhu);
+        const opts = [m.zhu,...distractors].sort(()=>Math.random()-.5);
+        qs.push({q:`「${ch}」的注音是哪個？`, opts, ans:opts.indexOf(m.zhu)});
       }
     }
   });
   return qs;
 }
 
-function startQ(type){
-  const d=getLessonData(lessonNum);
-  if(!d||!d.chars.length){alert('本課尚無資料');return;}
-  qType=type; qIdx=0; qScore=0; qAnswered=false;
-  questions=genQuiz(type);
-  document.getElementById('lvSel').style.display='none';
-  const qa=document.getElementById('qArea'); qa.style.display='block';
-  qa.innerHTML=`<div class="qcard">
+function beginQuiz(){
+  const pool = getQuizCharPool();
+  if(!pool.length){ showToast('所選範圍沒有生字資料，請重新選擇'); return; }
+  qType=quizTypeSelected; qIdx=0; qScore=0; qAnswered=false;
+  questions=genQuiz(quizTypeSelected);
+  if(!questions.length){ showToast('題目生成失敗，請擴大範圍'); return; }
+  // Hide all setup steps, show quiz area
+  document.querySelectorAll('.setup-step').forEach(s=>s.classList.remove('on'));
+  const qa = document.getElementById('qArea');
+  qa.style.display='block';
+  qa.innerHTML = `<div class="qcard">
     <div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div>
     <div class="q-meta"><span class="q-num" id="qNum"></span><span class="q-score" id="qScore">0分</span></div>
     <div class="q-text" id="qText"></div>
     <div class="opts" id="qOpts"></div>
   </div>
-  <button class="back-btn" onclick="backLv()">← 返回題型選擇</button>`;
+  <button class="back-btn" onclick="backToSetup()">← 重新設定</button>`;
   loadQ();
 }
-function backLv(){
-  document.getElementById('lvSel').style.display='block';
-  document.getElementById('qArea').style.display='none';
-}
+
+// Kept for backward compatibility
+function startQ(type){ quizTypeSelected=type; beginQuiz(); }
+function backLv(){ backToSetup(); }
+
 function loadQ(){
   if(qIdx>=questions.length){showRes();return;}
   const q=questions[qIdx]; qAnswered=false;
@@ -1927,6 +2318,7 @@ function loadQ(){
     `<button class="opt" onclick="ansQ(${i})">${o}</button>`
   ).join('');
 }
+
 function ansQ(i){
   if(qAnswered) return; qAnswered=true;
   const q=questions[qIdx];
@@ -1934,43 +2326,50 @@ function ansQ(i){
     if(idx===q.ans) b.classList.add('ok');
     else if(idx===i) b.classList.add('no');
   });
-  if(i===q.ans){ qScore+=20; }
+  if(i===q.ans){ qScore+=Math.round(100/questions.length); }
   document.getElementById('qScore').textContent=qScore+'分';
   setTimeout(()=>{qIdx++;loadQ();},1100);
 }
+
 function showRes(){
   profile.totalGames++;
   let earned = 0;
   let earnMsg = '';
-  if(qScore === 100){
+  const perfect = qScore >= 95;
+  if(perfect){
     earned = 100;
     profile.perfectGames++;
     earnMsg = `🏆 滿分！+${earned}點積分`;
-    earnPts(earned, `第${lessonNum}課闖關滿分`);
+    earnPts(earned, `第${quizRangeFrom}～${quizRangeTo}課闖關滿分`);
   } else if(qScore >= 60){
     earned = Math.floor(qScore / 20) * 10;
     earnMsg = earned > 0 ? `+${earned}點積分` : '';
-    if(earned > 0) earnPts(earned, `第${lessonNum}課闖關得${qScore}分`);
+    if(earned > 0) earnPts(earned, `第${quizRangeFrom}～${quizRangeTo}課闖關得${qScore}分`);
   }
   saveData();
-  const e = qScore===100 ? '🏆' : qScore>=80 ? '🎉' : qScore>=60 ? '👍' : '💪';
+  const semName = quizSetupSem===1?'上學期':'下學期';
+  const e = perfect?'🏆':qScore>=80?'🎉':qScore>=60?'👍':'💪';
   const ptsBadge = earned > 0
-    ? `<div style="display:inline-flex;align-items:center;gap:6px;background:var(--gold-light);border:1px solid var(--gold);border-radius:16px;padding:6px 16px;font-size:28px;font-weight:700;color:var(--gold);margin-bottom:1rem">${earnMsg}</div>`
+    ? `<div style="display:inline-flex;align-items:center;gap:6px;background:var(--gold-light);border:1px solid var(--gold);border-radius:20px;padding:8px 20px;font-size:22px;font-weight:700;color:var(--gold);margin-bottom:12px">${earnMsg}</div>`
     : '';
-  const perfectBanner = qScore===100
-    ? `<div style="background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border-radius:10px;padding:10px;margin-bottom:12px;font-size:26px;font-weight:700">🎊 太棒了！獲得 100 點積分！可以去兌換獎勵囉！</div>`
+  const banner = perfect
+    ? `<div style="background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border-radius:12px;padding:12px;margin-bottom:14px;font-size:20px;font-weight:700">🎊 太棒了！獲得 100 點積分！</div>`
     : '';
   document.getElementById('qArea').innerHTML=`<div class="qcard" style="text-align:center;padding:2rem 1.25rem">
-    <div style="font-size:96px;margin-bottom:.75rem">${e}</div>
-    <div style="font-family:'Noto Serif TC',serif;font-size:44px;font-weight:700;color:var(--ink);margin-bottom:6px">得 ${qScore} 分！</div>
-    ${perfectBanner}
-    ${ptsBadge}
-    <div style="font-size:26px;color:var(--ink3);margin-bottom:1.5rem">目前積分：⭐ ${profile.pts} 點</div>
-    <div style="display:flex;gap:8px;margin-bottom:8px">
-      <button style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--red);background:var(--red-light);color:var(--red);cursor:pointer;font-size:26px;font-family:'Noto Sans TC',sans-serif" onclick="startQ(${qType})">再玩一次</button>
-      <button style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-size:26px;font-family:'Noto Sans TC',sans-serif" onclick="backLv()">換題型</button>
+    <div style="font-size:60px;margin-bottom:12px">${e}</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:28px;font-weight:700;color:var(--ink);margin-bottom:8px">得 ${qScore} 分！</div>
+    <div style="font-size:18px;color:var(--ink3);margin-bottom:12px">一年級${semName} 第${quizRangeFrom}～${quizRangeTo}課 · ${questions.length}題</div>
+    ${banner}${ptsBadge}
+    <div class="result-pts-row">
+      <div class="result-stat"><div class="result-stat-num">${questions.length}</div><div class="result-stat-lbl">總題數</div></div>
+      <div class="result-stat"><div class="result-stat-num">${qScore}</div><div class="result-stat-lbl">得分</div></div>
+      <div class="result-stat"><div class="result-stat-num" style="color:var(--gold)">⭐${profile.pts}</div><div class="result-stat-lbl">累計積分</div></div>
     </div>
-    ${earned>0?`<button style="width:100%;padding:10px;border-radius:8px;background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border:none;cursor:pointer;font-size:26px;font-weight:700;font-family:'Noto Sans TC',sans-serif" onclick="navTo('rewards')">🎁 去兌換獎勵</button>`:''}
+    <div style="display:flex;gap:8px;margin-top:14px;margin-bottom:8px">
+      <button style="flex:1;padding:12px;border-radius:10px;border:1.5px solid var(--red);background:var(--red-light);color:var(--red);cursor:pointer;font-size:22px;font-family:'Noto Sans TC',sans-serif;font-weight:700" onclick="beginQuiz()">再玩一次</button>
+      <button style="flex:1;padding:12px;border-radius:10px;border:1.5px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;font-size:22px;font-family:'Noto Sans TC',sans-serif" onclick="backToSetup()">重新設定</button>
+    </div>
+    ${earned>0?`<button style="width:100%;padding:12px;border-radius:10px;background:linear-gradient(135deg,#b8860b,#d4a017);color:#fff;border:none;cursor:pointer;font-size:22px;font-weight:700;font-family:'Noto Sans TC',sans-serif" onclick="navTo('rewards')">🎁 去兌換獎勵</button>`:''}
   </div>`;
 }
 
@@ -1984,6 +2383,19 @@ function switchTab(id, btn){
   btn.classList.add('on');
 }
 
+// ── Init quiz setup ──
+function initQuizSetup(){
+  // Set quiz grade/sem to match current learning selection
+  quizSetupGrade = grade;
+  quizSetupSem = sem;
+  // Update sem button UI
+  const semBtns = document.querySelectorAll('#quizSemRow .qs-btn');
+  semBtns.forEach((b,i)=>b.classList.toggle('on', i+1===sem));
+  const gradeBtns = document.querySelectorAll('#quizGradeRow .qs-btn');
+  gradeBtns.forEach((b,i)=>b.classList.toggle('on', i+1===grade));
+  updateRangeSelects();
+}
+
 // ═══════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════
@@ -1992,6 +2404,7 @@ updateHeader();
 renderLessons();
 refreshAll();
 initCanvas();
+initQuizSetup();
 checkFirstLaunch();
 </script>
 
