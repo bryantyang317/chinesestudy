@@ -836,9 +836,13 @@ canvas { display: block; cursor: crosshair; touch-action: none; width: 100%; }
       <div><div class="step-title">選擇測驗範圍</div><div class="step-sub">跨課複習，輕鬆自訂</div></div>
     </div>
 
-    <div class="quiz-sem-row" id="quizGradeRow">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px" id="quizGradeRow">
       <button class="qs-btn on" onclick="setQuizGrade(this,1)">一年級</button>
       <button class="qs-btn" onclick="setQuizGrade(this,2)">二年級</button>
+      <button class="qs-btn" onclick="setQuizGrade(this,3)">三年級</button>
+      <button class="qs-btn" onclick="setQuizGrade(this,4)">四年級</button>
+      <button class="qs-btn" onclick="setQuizGrade(this,5)">五年級</button>
+      <button class="qs-btn" onclick="setQuizGrade(this,6)">六年級</button>
     </div>
     <div class="quiz-sem-row" id="quizSemRow">
       <button class="qs-btn" onclick="setQuizSem(this,1)">上學期</button>
@@ -2071,7 +2075,29 @@ let quizTypeSelected = 1;
 function getQuizLessonDB(){
   if(quizSetupGrade===1 && quizSetupSem===1) return LESSONS_1_1;
   if(quizSetupGrade===1 && quizSetupSem===2) return LESSONS_1_2;
+  // 二至六年級：使用現有的範例資料（之後可逐步擴充）
+  if(quizSetupGrade===2 && quizSetupSem===1) return DB[2]?.[1] ? _buildLessonDB(2,1) : null;
+  if(quizSetupGrade===2 && quizSetupSem===2) return DB[2]?.[2] ? _buildLessonDB(2,2) : null;
+  if(quizSetupGrade===3 && quizSetupSem===1) return DB[3]?.[1] ? _buildLessonDB(3,1) : null;
+  if(quizSetupGrade===4 && quizSetupSem===1) return DB[4]?.[1] ? _buildLessonDB(4,1) : null;
+  if(quizSetupGrade===5 && quizSetupSem===1) return DB[5]?.[1] ? _buildLessonDB(5,1) : null;
+  if(quizSetupGrade===6 && quizSetupSem===1) return DB[6]?.[1] ? _buildLessonDB(6,1) : null;
   return null;
+}
+
+// Convert DB format to LESSONS format for quiz
+function _buildLessonDB(g, s){
+  const semData = DB[g]?.[s];
+  if(!semData) return null;
+  const result = {};
+  Object.entries(semData).forEach(([les, data]) => {
+    result[les] = {
+      title: data.title || '第'+les+'課',
+      chars: (data.chars || []).map(c => c.ch || c),
+      words: (data.words || []).map(w => w.w || w),
+    };
+  });
+  return Object.keys(result).length ? result : null;
 }
 function getQuizLessonMax(){
   const db = getQuizLessonDB();
@@ -2392,7 +2418,7 @@ function initQuizSetup(){
   const semBtns = document.querySelectorAll('#quizSemRow .qs-btn');
   semBtns.forEach((b,i)=>b.classList.toggle('on', i+1===sem));
   const gradeBtns = document.querySelectorAll('#quizGradeRow .qs-btn');
-  gradeBtns.forEach((b,i)=>b.classList.toggle('on', i+1===grade));
+  gradeBtns.forEach((b,i)=>b.classList.toggle('on', i+1===quizSetupGrade));
   updateRangeSelects();
 }
 
