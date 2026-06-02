@@ -1,9 +1,9 @@
 // ═══════════════════════════════════════════════
 // 康軒國語學習 — Service Worker (離線快取)
+// 版本：v2 — 改為網路優先策略，確保更新即時生效
 // ═══════════════════════════════════════════════
-const CACHE_NAME = 'kangxuan-v1';
+const CACHE_NAME = 'kangxuan-v2';
 
-// 所有需要快取的檔案（app 本體）
 const ASSETS = [
   './',
   './index.html',
@@ -15,15 +15,12 @@ const ASSETS = [
 // ── 安裝：預先快取所有檔案 ──
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(ASSETS);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
-  // 立即啟用，不等待舊版本結束
   self.skipWaiting();
 });
 
-// ── 啟用：清除舊版快取 ──
+// ── 啟用：清除所有舊版快取 ──
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -35,29 +32,27 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// ── 攔截請求：優先用快取，沒有才連網路 ──
+// ── 攔截請求：網路優先，失敗才用快取 ──
+// 這樣每次更新 index.html 後，只要有網路就會立刻拿到最新版
 self.addEventListener('fetch', event => {
-  // 只處理 GET 請求
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
-
-      // 沒有快取：嘗試網路，同時存入快取
-      return fetch(event.request).then(response => {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
+    fetch(event.request)
+      .then(response => {
+        // 網路成功：更新快取並回傳
+        if (response && response.status === 200 && response.type === 'basic') {
+          const toCache = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, toCache);
+          });
         }
-        const toCache = response.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, toCache);
-        });
         return response;
-      }).catch(() => {
-        // 網路失敗 → 回傳主頁（單頁 app fallback）
-        return caches.match('./index.html');
-      });
-    })
+      })
+      .catch(() => {
+        // 無網路：從快取取出（完全離線可用）
+        return caches.match(event.request)
+          .then(cached => cached || caches.match('./index.html'));
+      })
   );
 });
